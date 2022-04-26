@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.43, created on 2022-04-26 13:46:38
+/* Smarty version 3.1.43, created on 2022-04-26 14:47:14
   from 'C:\xampp7.4.28\htdocs\presta\modules\dashgoals\views\templates\hook\dashboard_zone_two.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.43',
-  'unifunc' => 'content_6267db9eeff2f7_80725347',
+  'unifunc' => 'content_6267e9d28e4782_98287059',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:./config.tpl' => 1,
   ),
 ),false)) {
-function content_6267db9eeff2f7_80725347 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6267e9d28e4782_98287059 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="clearfix"></div>
 <?php echo '<script'; ?>
 >
