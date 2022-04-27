@@ -7,6 +7,7 @@ if(!defined('_PS_VERSION_')){
 use PrestaShop\PrestaShop\Core\Module\WidgetInterface;
 
 class MyBasicModule extends Module implements WidgetInterface {
+    //parametry modułu 
     public function __construct(){
         $this->name = "mybasicmodule";
         $this->tab = "front_office_features";
@@ -41,27 +42,31 @@ class MyBasicModule extends Module implements WidgetInterface {
         return true;
     }
 
-    //wylonczone bo chce sprawidzc widgety
-    // public function hookdisplayFooter($params){
+    /**
+       wylonczone bo chce sprawidzc widgety
+    * public function hookdisplayFooter($params){
 
-    //     // nie dziala a powinno 
+    *     // nie dziala a powinno 
 
-    //     // $this->context->smarty->assing([
-    //     //     'jebać_depresje' => 'no konrad rozpadzasz sie lekko',
-    //     //     'idcart' => $this->context->cart->id
-    //     // ]);
-    //     return $this->display(__FILE__,'views/templates/hook/footer.tpl');
-    // }
+    *     // $this->context->smarty->assing([
+    *     //     'jebać_depresje' => 'no konrad rozpadzasz sie lekko',
+    *     //     'idcart' => $this->context->cart->id
+    *     // ]);
+    *     return $this->display(__FILE__,'views/templates/hook/footer.tpl');
+    * }
+    */
 
     // widgeta dzialaja wszystkie hooki ;)
     // mozna sie odnsoci do tej metody w views z innyvh modeli 
     public function renderWidget($hookName, array $configuration){
         if ($hookName==='dispalyNavFullWidth')
         return "No słabo jest";
+        // assign prekazuje zmienne do view
         $this->context->smarty->assign($this->getWidgetVariables($hookName, $configuration));
         return $this->fetch('module:mybasicmodule/views/templates/hook/footer.tpl');
     }
 
+    // zbiera i przekazuje dane do konkretnego widgeta
     public function getWidgetVariables($hookName, array $configuration){
         return [
             'idcart' => $this->context->cart->id,
@@ -71,6 +76,11 @@ class MyBasicModule extends Module implements WidgetInterface {
 
     // strona konfiguracyjna
     public function getContent(){
+        // input ocena_akademika
+        $ocena_akademika = (int) Configuration::get('OCENA-AKADEMIKA');
+        $this->context->smarty->assign([
+            'ocena_akademika' => $ocena_akademika
+        ]);
         return $this->fetch('module:mybasicmodule/views/templates/admin/config.tpl');
     }
 
