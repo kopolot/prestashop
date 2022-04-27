@@ -4,7 +4,9 @@ if(!defined('_PS_VERSION_')){
     exit;
 }
 
-class MyBasicModule extends Module{
+use PrestaShop\PrestaShop\Core\Module\WidgetInterface;
+
+class MyBasicModule extends Module implements WidgetInterface {
     public function __construct(){
         $this->name = "mybasicmodule";
         $this->tab = "front_office_features";
@@ -23,7 +25,44 @@ class MyBasicModule extends Module{
 
     }
 
+    // install | return :bool
     public function install(){
-        
+        return parent::install() && $this->registerHook('registerGDPRConsent') && $this->dbInstall();
     }
+
+    // uninstall | return :bool
+    public function uninstall(){
+        return parent::uninstall();
+    }
+
+    // sql install
+    public function dbInstall(){
+        // sql robiacy tabele 
+        return true;
+    }
+
+    //wylonczone bo chce sprawidzc widgety
+    // public function hookdisplayFooter($params){
+
+    //     // nie dziala a powinno 
+
+    //     // $this->context->smarty->assing([
+    //     //     'jebaćdepresje' => 'no konrad rozpadzasz sie lekko',
+    //     //     'idcart' => $this->context->cart->id
+    //     // ]);
+    //     return $this->display(__FILE__,'views/templates/hook/footer.tpl');
+    // }
+
+    // widgeta dzialaja wszystkie hooki ;)
+    // mozna sie odnsoci do tej metody w views z innyvh modeli 
+    public function renderWidget($hookName, array $configuration){
+        if ($hookName==='dispalyNavFullWidth')
+        return "No słabo jest";
+        return $this->fetch('module:mybasicmodule/views/templates/hook/footer.tpl');
+    }
+
+    public function getWidgetVariables($hookName, array $configuration){
+        return true;
+    }
+
 }
