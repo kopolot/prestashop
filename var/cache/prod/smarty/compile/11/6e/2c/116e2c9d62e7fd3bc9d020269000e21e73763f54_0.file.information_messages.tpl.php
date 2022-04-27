@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.43, created on 2022-04-26 15:18:12
+/* Smarty version 3.1.43, created on 2022-04-27 11:19:24
   from 'C:\xampp7.4.28\htdocs\presta\admin146acp9u8\themes\new-theme\template\components\layout\information_messages.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.43',
-  'unifunc' => 'content_6267f114b56907_67150599',
+  'unifunc' => 'content_62690a9c34c9a6_07279109',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6267f114b56907_67150599 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62690a9c34c9a6_07279109 (Smarty_Internal_Template $_smarty_tpl) {
 if ((isset($_smarty_tpl->tpl_vars['informations']->value)) && count($_smarty_tpl->tpl_vars['informations']->value) && $_smarty_tpl->tpl_vars['informations']->value) {?>
   <div class="bootstrap">
     <div class="alert alert-info">

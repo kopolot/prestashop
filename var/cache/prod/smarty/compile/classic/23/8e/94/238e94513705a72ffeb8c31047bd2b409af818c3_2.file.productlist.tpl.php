@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.43, created on 2022-04-26 14:06:31
+/* Smarty version 3.1.43, created on 2022-04-27 11:22:58
   from 'C:\xampp7.4.28\htdocs\presta\themes\classic\templates\catalog\_partials\productlist.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.43',
-  'unifunc' => 'content_6267e04754f7e2_65103859',
+  'unifunc' => 'content_62690b727c6226_35071192',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:catalog/_partials/miniatures/product.tpl' => 1,
   ),
 ),false)) {
-function content_6267e04754f7e2_65103859 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62690b727c6226_35071192 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->smarty->ext->_capture->open($_smarty_tpl, 'default', "productClasses", null);
 if (!empty($_smarty_tpl->tpl_vars['productClass']->value)) {
 echo htmlspecialchars($_smarty_tpl->tpl_vars['productClass']->value, ENT_QUOTES, 'UTF-8');
