@@ -2602,6 +2602,7 @@ class FrontContainer extends \PrestaShop\PrestaShop\Adapter\Container\LegacyCont
                 60 => 'blockreassurance',
                 61 => 'ps_facetedsearch',
                 62 => 'mymodule',
+                63 => 'cykamodule',
             ],
             'ps_cache_dir' => 'C:\\xampp7.4.28\\htdocs\\presta/var/cache/prod\\',
             'mail_themes_uri' => '/mails/themes',
