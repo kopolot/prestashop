@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.43, created on 2022-04-27 17:09:53
+/* Smarty version 3.1.43, created on 2022-04-27 19:57:36
   from 'module:pscontactinfopscontactinf' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.43',
-  'unifunc' => 'content_62695cc1c834a6_73265138',
+  'unifunc' => 'content_62698410e3d0d8_82348077',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9992f3fe04dd41bcec1a2029cf07bead637caf4d' => 
     array (
       0 => 'module:pscontactinfopscontactinf',
-      1 => 1647359402,
+      1 => 1650982621,
       2 => 'module',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_62695cc1c834a6_73265138 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62698410e3d0d8_82348077 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\xampp7.4.28\\htdocs\\presta\\vendor\\smarty\\smarty\\libs\\plugins\\function.mailto.php','function'=>'smarty_function_mailto',),));
 ?>
 <!-- begin C:\xampp7.4.28\htdocs\presta/themes/classic/modules/ps_contactinfo/ps_contactinfo.tpl -->

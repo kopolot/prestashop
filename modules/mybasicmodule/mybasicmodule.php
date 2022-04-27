@@ -47,7 +47,7 @@ class MyBasicModule extends Module implements WidgetInterface {
     //     // nie dziala a powinno 
 
     //     // $this->context->smarty->assing([
-    //     //     'jebaćdepresje' => 'no konrad rozpadzasz sie lekko',
+    //     //     'jebać_depresje' => 'no konrad rozpadzasz sie lekko',
     //     //     'idcart' => $this->context->cart->id
     //     // ]);
     //     return $this->display(__FILE__,'views/templates/hook/footer.tpl');
@@ -58,11 +58,20 @@ class MyBasicModule extends Module implements WidgetInterface {
     public function renderWidget($hookName, array $configuration){
         if ($hookName==='dispalyNavFullWidth')
         return "No słabo jest";
+        $this->context->smarty->assign($this->getWidgetVariables($hookName, $configuration));
         return $this->fetch('module:mybasicmodule/views/templates/hook/footer.tpl');
     }
 
     public function getWidgetVariables($hookName, array $configuration){
-        return true;
+        return [
+            'idcart' => $this->context->cart->id,
+            'jebac_depresje' => 'ale dasz radę'
+        ];
+    }
+
+    // strona konfiguracyjna
+    public function getContent(){
+        return $this->fetch('module:mybasicmodule/views/templates/admin/config.tpl');
     }
 
 }

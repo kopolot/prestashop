@@ -1,0 +1,1 @@
+*ERROR* 	v1.7.8.5	2022/04/26 - 16:17:36: Link to database cannot be established: SQLSTATE[HY000] [1049] Unknown database &#039;presta&#039; at line 136 in file classes/db/DbPDO.php
