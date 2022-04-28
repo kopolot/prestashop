@@ -9,7 +9,7 @@ class CustomOrderRef extends Module{
     public function __construct(){
         $this->name = "customorderref";
         $this->tab = "administration";
-        $this->version = "dev";
+        $this->version = " .dev";
         $this->author = "M2ITsolutions";
         $this->need_instance = 0;
         $this->ps_version_compliancy = [

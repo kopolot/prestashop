@@ -17,35 +17,25 @@ class Order extends OrderCore{
         }
         // PL/1999/1/1/1999
         elseif(Configuration::get('ORDER_REF_METHOD')==3){
-            return $order->dateReference();
+            return self::dateReference();
         }
         // n++
         return true;
     }
 
     // return (ISO country/year/number of order in month/month/year) ex. PL/2022/100/04/27
-    public function dateReference(){
+    public static function dateReference(){
         // select iso_code from ps_country natural join ps_address where ps_address.id_address = 8; 
-        $country = $this->dateReferenceQuery();
         $date1 = date('/Y/');
         $date2 = date("/m/Y");
         // current month order
-        $cmo = $this->monthC();
-        return $country . $date1 . $cmo . $date2;
+        $cmo = self::monthC();
+        return $date1 . $cmo . $date2;
     }
 
-    public function dateReferenceQuery(){
-        $sql = new DbQuery();
-        $sql->select('iso_code');
-        $sql->from('ps_country');
-        $sql->naturalJoin('ps_address');
-        $sql->where("ps_address.id_address = $this->id_address_delivery");
-        $country = Db::getInstance()->executeS($sql);
-        return $country;
-    }
 
     // return (int) actual order in current month 
-    public function monthC(){
+    public static function monthC(){
         // gets last month used for order
         $current_month = Configuration::get("CURRENT_MONTH");
 
