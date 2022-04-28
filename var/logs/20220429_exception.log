@@ -1,0 +1,1 @@
+*ERROR* 	v1.7.8.5	2022/04/29 - 00:01:43: Table &#039;presta.ps_ps_orders&#039; doesn&#039;t exist&lt;br /&gt;&lt;br /&gt;&lt;pre&gt;UPDATE `ps_ps_orders` SET `reference` = &#039;2022-042022-042022-04&#039; WHERE id_order = 12&lt;/pre&gt; at line 769 in file classes/db/Db.php

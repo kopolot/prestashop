@@ -4,6 +4,13 @@ if(!defined('_PS_VERSION_')){
     exit;
 }
 
+/**
+    zostalo zrobic view do koca,
+    dodac wszystkie metody,
+    view configow opary na flexie zeby sie ładnie dodawaly nowe czesci
+ */
+
+
 class CustomOrderRef extends Module{
     //parametry modułu 
     public function __construct(){
@@ -34,7 +41,7 @@ class CustomOrderRef extends Module{
     
        return (
             parent::install() 
-            && $this->registerHook('actionObjectOrderAddAfter')
+            && $this->registerHook('actionValidateOrder')
         ); 
     }
 
@@ -42,43 +49,91 @@ class CustomOrderRef extends Module{
         return parent::uninstall();
     }
 
+    // ilosc pol wyboru 
+    public $parts = 2;
+
+    // opcje do wyboru 
+    public function varNames(){
+        return [
+            ['name' => "Zostaw puste jeśli chcesz pominąć", 'value' => 0],
+            ['name' => "aktualne zamówienie w tym miesiącu", 'value' => 1],
+            ['name' => "rosnąca liczba od podanej wartość", "value" => 2],
+            ['name' => "aktualny rok i miesiąc (ROK-MIES)", "value" => 3],
+            ['name' => "kraj dostawy", 'value' => 4],
+            // ['name' =>'aktualny rok']
+        ];
+    }
+
+    
     public function getContent(){
         $msg = null;
-        if(Tools::getValue('config')){
-            Configuration::updateValue('ORDER_REF_METHOD',Tools::getValue('config'));
-            $msg = "Sukcess";
-        }
+        for ($i = 0;$i<=$this->parts;$i++){
+            if(Configuration::get("ORDER_REF_METHOD$i")===null)
+                Configuration::updateValue("ORDER_REF_METHOD$i",0);
+            if(Tools::getValue('config0')==0){
+                $msg = "buu dyskwalifikacja";
+            }
+            elseif(Tools::getValue("config$i")){
+                $msg = "Sukcess";
+                Configuration::updateValue("ORDER_REF_METHOD$i",Tools::getValue("config$i"));
+            }
+        }  
+        $value = [
+            Configuration::get("ORDER_REF_METHOD0"),
+            Configuration::get("ORDER_REF_METHOD1"),
+            Configuration::get("ORDER_REF_METHOD2")
+        ];
         $this->context->smarty->assign([
             'msg' => $msg,
-            'value' => Configuration::get('ORDER_REF_METHOD')
+            'names' => $this->varNames(),
+            'value' => $value,
+            'parts' => $this->parts,
+            'jp' => Configuration::get("HWDP_JP")
         ]);
         return $this->fetch('module:customorderref/views/templates/admin/config.tpl');
     }
 
-    public $dupa;
 
     //  $params['object'] = order
-    public function actionObjectOrderAddBefore($params){
-       // 4 etapy do konfiguracj i tyle 
+    public function hookActionValidateOrder($params){
+        $order = $params['order'];
+        $config= $this->createConfig();
+        for($i=0;$i<=$this->parts;$i++){
+            if($config[$i]==0)
+            $tab[$i]=null;
+            if($config[$i]==1)
+            $tab[$i]=$this->monthC();
+            if($config[$i]==2)
+            $tab[$i]=$this->incrementVal();
+            if($config[$i]==3)
+            $tab[$i]=$this->dateReference();
+            if($config[$i]==4)
+            $tab[$i]=$this->orderCountry($order);
+        }
+        $order->reference = implode("",$tab);
+    }
+
+    // tworzy config do hooka
+    public function createConfig(){
+        for($i=0;$i<=$this->parts;$i++){
+            $tab[$i]=Configuration::get("ORDER_REF_METHOD$i");
+        }
+        return $tab;
+    }
+
+    // rosnaca liczba od podanej wartosci
+    public function incrementVal(){
+        
+    }
+
+    // ISO code kraju zamowienaia
+    public function orderCountry($order){
+
     }
 
     // from 3, return : string 
-    public static function dateReference($order){
-        $date1 = date('/Y/');
-        $date2 = date("/m/Y");
-        $cmo = self::monthC();
-        $random = self::random3String();
-        return $random . $date1 . $cmo . $date2;
-    }
-
-    // randomowe znaki 
-    public static function random3String(){
-        $char = "ABidsfidfjJOIPfoasfDSOVKDSPOPVMPOsopajfsadjuiuwmecruitvcxnvxczczzxWEQPOCVCXKLVBGOWSG";
-        $charlen = strlen($char)-1;
-        for ($i = 0;$i<=3;$i++){
-            $res[$i]=substr($char,rand(0,$charlen),1);
-        }
-        return $res[0] . $res[1] . $res[2];
+    public static function dateReference(){
+        return date("Y-m");
     }
 
     // aktualny mies
