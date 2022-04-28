@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.43, created on 2022-04-28 11:26:50
+/* Smarty version 3.1.43, created on 2022-04-28 12:56:14
   from 'C:\xampp7.4.28\htdocs\presta\modules\ps_faviconnotificationbo\views\templates\hook\displayBackOfficeHeader.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.43',
-  'unifunc' => 'content_626a5dda169039_31789690',
+  'unifunc' => 'content_626a72ce57f2d7_83546578',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_626a5dda169039_31789690 (Smarty_Internal_Template $_smarty_tpl) {
+function content_626a72ce57f2d7_83546578 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
 >
   if (undefined !== ps_faviconnotificationbo) {

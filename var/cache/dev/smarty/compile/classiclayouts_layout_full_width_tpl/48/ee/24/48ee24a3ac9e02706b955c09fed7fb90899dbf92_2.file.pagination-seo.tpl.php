@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.43, created on 2022-04-28 11:38:46
+/* Smarty version 3.1.43, created on 2022-04-28 13:08:59
   from 'C:\xampp7.4.28\htdocs\presta\themes\classic\templates\_partials\pagination-seo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.43',
-  'unifunc' => 'content_626a60a6282176_75071698',
+  'unifunc' => 'content_626a75cb635d37_51300031',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_626a60a6282176_75071698 (Smarty_Internal_Template $_smarty_tpl) {
+function content_626a75cb635d37_51300031 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\xampp7.4.28\\htdocs\\presta\\vendor\\smarty\\smarty\\libs\\plugins\\modifier.replace.php','function'=>'smarty_modifier_replace',),));
 ?>
 

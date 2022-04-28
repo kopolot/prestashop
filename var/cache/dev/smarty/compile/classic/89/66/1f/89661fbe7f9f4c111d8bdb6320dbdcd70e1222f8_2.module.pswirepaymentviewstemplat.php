@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.43, created on 2022-04-28 11:38:46
+/* Smarty version 3.1.43, created on 2022-04-28 13:08:59
   from 'module:pswirepaymentviewstemplat' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.43',
-  'unifunc' => 'content_626a60a6047bf3_24781592',
+  'unifunc' => 'content_626a75cb99cf88_27243445',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_626a60a6047bf3_24781592 (Smarty_Internal_Template $_smarty_tpl) {
+function content_626a75cb99cf88_27243445 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-- begin C:\xampp7.4.28\htdocs\presta/modules/ps_wirepayment/views/templates/hook/_partials/payment_infos.tpl -->
 
 <dl>

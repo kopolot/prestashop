@@ -2569,7 +2569,7 @@
   ),
   'Order' => 
   array (
-    'path' => '',
+    'path' => 'override/classes/order/Order.php',
     'type' => 'class',
     'override' => false,
   ),

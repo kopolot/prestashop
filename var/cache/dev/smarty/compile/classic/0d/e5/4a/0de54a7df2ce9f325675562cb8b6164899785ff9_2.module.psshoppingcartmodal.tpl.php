@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.43, created on 2022-04-28 11:37:35
+/* Smarty version 3.1.43, created on 2022-04-28 13:08:41
   from 'module:psshoppingcartmodal.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.43',
-  'unifunc' => 'content_626a605fc9fd81_01304448',
+  'unifunc' => 'content_626a75b9602ed5_32939205',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_626a605fc9fd81_01304448 (Smarty_Internal_Template $_smarty_tpl) {
+function content_626a75b9602ed5_32939205 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-- begin C:\xampp7.4.28\htdocs\presta/themes/classic/modules/ps_shoppingcart/modal.tpl --><div id="blockcart-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.43, created on 2022-04-28 11:37:32
+/* Smarty version 3.1.43, created on 2022-04-28 13:08:38
   from 'module:productcommentsviewstempl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.43',
-  'unifunc' => 'content_626a605c9f38b5_30988472',
+  'unifunc' => 'content_626a75b6e999a1_47029477',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_626a605c9f38b5_30988472 (Smarty_Internal_Template $_smarty_tpl) {
+function content_626a75b6e999a1_47029477 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-- begin C:\xampp7.4.28\htdocs\presta/modules/productcomments/views/templates/hook/average-grade-stars.tpl -->
 <?php if ($_smarty_tpl->tpl_vars['nb_comments']->value != 0) {?>
   <div class="comments-note">

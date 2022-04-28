@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.43, created on 2022-04-28 11:38:32
+/* Smarty version 3.1.43, created on 2022-04-28 13:08:59
   from 'C:\xampp7.4.28\htdocs\presta\themes\classic\templates\checkout\_partials\steps\checkout-step.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.43',
-  'unifunc' => 'content_626a6098cf2e65_66573404',
+  'unifunc' => 'content_626a75cb9f2e91_89888570',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,15 +20,15 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_626a6098cf2e65_66573404 (Smarty_Internal_Template $_smarty_tpl) {
+function content_626a75cb9f2e91_89888570 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, false);
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1512908167626a6098ceb167_38642934', 'step');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1963615657626a75cb9eb197_16129621', 'step');
 ?>
 
 <?php }
 /* {block 'step_content'} */
-class Block_1066154206626a6098ceefe2_17842873 extends Smarty_Internal_Block
+class Block_860466552626a75cb9ef012_49964164 extends Smarty_Internal_Block
 {
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 ?>
@@ -37,16 +37,16 @@ DUMMY STEP CONTENT<?php
 }
 /* {/block 'step_content'} */
 /* {block 'step'} */
-class Block_1512908167626a6098ceb167_38642934 extends Smarty_Internal_Block
+class Block_1963615657626a75cb9eb197_16129621 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'step' => 
   array (
-    0 => 'Block_1512908167626a6098ceb167_38642934',
+    0 => 'Block_1963615657626a75cb9eb197_16129621',
   ),
   'step_content' => 
   array (
-    0 => 'Block_1066154206626a6098ceefe2_17842873',
+    0 => 'Block_860466552626a75cb9ef012_49964164',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -69,7 +69,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 
     <div class="content">
       <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1066154206626a6098ceefe2_17842873', 'step_content', $this->tplIndex);
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_860466552626a75cb9ef012_49964164', 'step_content', $this->tplIndex);
 ?>
 
     </div>

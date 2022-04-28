@@ -2635,7 +2635,7 @@ class FrontContainer extends \PrestaShop\PrestaShop\Adapter\Container\LegacyCont
                 61 => 'ps_facetedsearch',
                 62 => 'mymodule',
                 63 => 'mybasicmodule',
-                64 => 'customorderid',
+                64 => 'customorderref',
             ],
             'ps_cache_dir' => 'C:\\xampp7.4.28\\htdocs\\presta/var/cache/dev\\',
             'mail_themes_uri' => '/mails/themes',

@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.43, created on 2022-04-28 11:38:32
+/* Smarty version 3.1.43, created on 2022-04-28 13:08:59
   from 'module:pscheckpaymentviewstempla' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.43',
-  'unifunc' => 'content_626a6098c23db2_77942358',
+  'unifunc' => 'content_626a75cb966471_50103503',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_626a6098c23db2_77942358 (Smarty_Internal_Template $_smarty_tpl) {
+function content_626a75cb966471_50103503 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-- begin C:\xampp7.4.28\htdocs\presta/modules/ps_checkpayment/views/templates/front/payment_infos.tpl -->
 <section>
   <p><?php echo call_user_func_array( $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['l'][0], array( array('s'=>'Please send us your check following these rules:','d'=>'Modules.Checkpayment.Shop'),$_smarty_tpl ) );?>
