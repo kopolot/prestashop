@@ -9,7 +9,7 @@ class CustomOrderRef extends Module{
     public function __construct(){
         $this->name = "customorderref";
         $this->tab = "administration";
-        $this->version = "1. 0";
+        $this->version = "dev";
         $this->author = "M2ITsolutions";
         $this->need_instance = 0;
         $this->ps_version_compliancy = [
@@ -18,7 +18,7 @@ class CustomOrderRef extends Module{
         ];
         $this->bootstrap = true;
         parent::__construct();
-        $this->displayName = $this->l("Customizable orders refelantial number");
+        $this->displayName = $this->l("Customisable orders refelantial number");
         $this->description = $this->l("This is a great modyule");
         $this->comfirmUninstall = $this->l('Do you wan\'t remove this module');
         if (!Configuration::get('CUSTOM_ORDER_REF')) {
