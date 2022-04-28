@@ -59,15 +59,7 @@ class CustomOrderRef extends Module{
 
     //  $params['object'] = order
     public function actionObjectOrderAddBefore($params){
-        // 0000-00000- ect.
-        if (Configuration::get('ORDER_REF_METHOD')==2){
-            return true;
-        }
-        // PLsdhaskjdkjsa
-        elseif(Configuration::get('ORDER_REF_METHOD')==3){
-            return $this->dateReference($params['object']);
-        }
-        return true;
+       // 4 etapy do konfiguracj i tyle 
     }
 
     // from 3, return : string 
