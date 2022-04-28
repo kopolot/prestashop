@@ -76,10 +76,17 @@ class MyBasicModule extends Module implements WidgetInterface {
 
     // strona konfiguracyjna
     public function getContent(){
+        $message = null ;
+        // getValue zbiera posty i get 
+        if(Tools::getValue('ocena_akademika')){
+            Configuration::updateValue('OCENA_AKADEMIKA',Tools::getValue('ocena_akademika'));
+            $message = "no i chuj";
+        }
         // input ocena_akademika
-        $ocena_akademika = (int) Configuration::get('OCENA-AKADEMIKA');
+        $ocena_akademika = Configuration::get('OCENA_AKADEMIKA');
         $this->context->smarty->assign([
-            'ocena_akademika' => $ocena_akademika
+            'ocena_akademika' => $ocena_akademika,
+            'message' => $message
         ]);
         return $this->fetch('module:mybasicmodule/views/templates/admin/config.tpl');
     }
