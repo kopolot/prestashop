@@ -4,8 +4,6 @@
            {$message}
         </p>
     </div>
-{else}
-
 {/if}
 
 <form action="" method="POST">

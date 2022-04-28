@@ -23,7 +23,7 @@ class MyBasicModule extends Module implements WidgetInterface {
         $this->displayName = $this->l("My Module");
         $this->description = $this->l("This is a great testing module");
         $this->comfirmUninstall = $this->l('idi na chuj');
-
+        
     }
 
     // install | return :bool
@@ -90,5 +90,4 @@ class MyBasicModule extends Module implements WidgetInterface {
         ]);
         return $this->fetch('module:mybasicmodule/views/templates/admin/config.tpl');
     }
-
 }
