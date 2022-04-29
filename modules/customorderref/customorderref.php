@@ -42,7 +42,14 @@ class CustomOrderRef extends Module{
        return (
             parent::install() 
             && $this->registerHook('actionValidateOrder')
+            && $this->installDb()
         ); 
+    }
+
+    public function installDb(){
+        $db = Db::getInstance();
+        $sql = "alter table " . _DB_PREFIX_ . "orders modify column reference varchar(100)";
+        $db->execute($sql);
     }
 
     public function uninstall(){
@@ -58,6 +65,7 @@ class CustomOrderRef extends Module{
         }
         $this->context->smarty->assign([
             'msg' => $msg,
+            'ref' => Configuration::get("ORDER_REF")
         ]);
         return $this->fetch('module:customorderref/views/templates/admin/config.tpl');
     }
@@ -69,14 +77,13 @@ class CustomOrderRef extends Module{
         $config = Configuration::get("ORDER_REF");
         $config=str_replace("/YY/",date("Y"),$config);
         $config=str_replace("/MM/",date("m"),$config);
-        $config=str_replace("/NEXTOM/",self::monthC(),$config);
-        $config=str_replace("/NEXTO/",self::increment(),$config);
-        Configuration::updateValue("ORDER_REF",$config);
-        $order->reference = Configuration::get("ORDER_REF");
+        $config=str_replace("/NEXTOM/",self::nextom(),$config);
+        $config=str_replace("/NEXTO/",self::nexto(),$config);
+        $order->reference = $config;
     }
 
     // zwieksza sie liczba 
-    public static function increment(){
+    public static function nexto(){
         if(Configuration::get("CURRENT_ORDER")===null){
             Configuration::updateValue("CURRENT_ORDER",1);
         }
@@ -85,7 +92,7 @@ class CustomOrderRef extends Module{
     }
 
     // aktualny mies
-    public static function monthC(){
+    public static function nextom(){
         $current_month = Configuration::get("CURRENT_MONTH");
         $current_month_order = Configuration::get("CURRENT_ORDER_IN_MONTH");
         if($current_month_order===null)
@@ -98,6 +105,7 @@ class CustomOrderRef extends Module{
         }else{
             Configuration::updateValue("CURRENT_MONTH",date("m"));
             Configuration::updateValue("CURRENT_ORDER_IN_MONTH",1);
+            Configuration::updateValue("CURRENT_ORDER",Configuration::get("CURRENT_ORDER")+1);
             return Configuration::get("CURRENT_ORDER_IN_MONTH");
         }
     }

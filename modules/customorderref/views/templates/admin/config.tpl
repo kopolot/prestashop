@@ -30,6 +30,7 @@
                             id="input2"
                             required
                             style=""
+                            value="{$ref}"
                             onkeyup="change()"
                         />
                     </div>
@@ -42,23 +43,28 @@
 
             <div style="display:flex; flex-direction:column;  align-items:streach;">
                 <div style="display:flex; flex-direction:column; margin-bottom:1rem;">
-                    <input class="form-control form-control-lg" value="100/04/2022" id="exa" type="text" disabled style=" display:inline-block;">
+                    <input class="form-control form-control-lg"  id="exa" type="text" disabled style=" display:inline-block;">
                 </div>
             </div>
             <div style="margin-top:1rem;">
                 <button type="submit" class="btn btn-primary">Potwierdź</button>
             </div>
         </div>
+       
     </div>
     <script>
+        change()
         function change(){
-            const value = "100/04/2022"
-            let change=$('#input2').val()
-            console.log("cipa")
-            if(change!=null){
-                change = change + "/"
-            }
-            return $('#exa').val(change+value)
+            let date = new Date()
+            let value=$('#input2').val();
+            value = value.replace('/YY/',date.getFullYear())
+            if(value.indexOf('/MM/')!=-1)
+                value = value.replace('/MM/',"0"+date.getMonth())
+            //let nexto = Math.round(Math.random() * 1000)
+            //let nextom = Math.round(Math.random() * 100)
+            value = value.replace('/NEXTOM/',Math.round(Math.random() * 100))
+            value = value.replace('/NEXTO/',Math.round(Math.random() * 1000))
+            $('#exa').val(value);
         }
     </script>  
     </form>
