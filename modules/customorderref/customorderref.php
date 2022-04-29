@@ -32,7 +32,7 @@ class CustomOrderRef extends Module{
             $this->warning = $this->l('No name provided');
         }
     }
-
+//update table
     public function install()
     {
         if (Shop::isFeatureActive()) {
@@ -49,91 +49,39 @@ class CustomOrderRef extends Module{
         return parent::uninstall();
     }
 
-    // ilosc pol wyboru 
-    public $parts = 2;
 
-    // opcje do wyboru 
-    public function varNames(){
-        return [
-            ['name' => "Zostaw puste jeśli chcesz pominąć", 'value' => 0],
-            ['name' => "aktualne zamówienie w tym miesiącu", 'value' => 1],
-            ['name' => "rosnąca liczba od podanej wartość", "value" => 2],
-            ['name' => "aktualny rok i miesiąc (ROK-MIES)", "value" => 3],
-            ['name' => "kraj dostawy", 'value' => 4],
-            // ['name' =>'aktualny rok']
-        ];
-    }
-
-    
     public function getContent(){
-        $msg = null;
-        for ($i = 0;$i<=$this->parts;$i++){
-            if(Configuration::get("ORDER_REF_METHOD$i")===null)
-                Configuration::updateValue("ORDER_REF_METHOD$i",0);
-            if(Tools::getValue('config0')==0){
-                $msg = "buu dyskwalifikacja";
-            }
-            elseif(Tools::getValue("config$i")){
-                $msg = "Sukcess";
-                Configuration::updateValue("ORDER_REF_METHOD$i",Tools::getValue("config$i"));
-            }
-        }  
-        $value = [
-            Configuration::get("ORDER_REF_METHOD0"),
-            Configuration::get("ORDER_REF_METHOD1"),
-            Configuration::get("ORDER_REF_METHOD2")
-        ];
+        $msg = null; 
+        if(Tools::getValue("config")){
+            $msg = "Sukcess";
+            Configuration::updateValue("ORDER_REF",Tools::getValue("config"));
+        }
         $this->context->smarty->assign([
             'msg' => $msg,
-            'names' => $this->varNames(),
-            'value' => $value,
-            'parts' => $this->parts,
-            'jp' => Configuration::get("HWDP_JP")
         ]);
         return $this->fetch('module:customorderref/views/templates/admin/config.tpl');
     }
 
 
-    //  $params['object'] = order
+    //  $params['order'] = order
     public function hookActionValidateOrder($params){
         $order = $params['order'];
-        $config= $this->createConfig();
-        for($i=0;$i<=$this->parts;$i++){
-            if($config[$i]==0)
-            $tab[$i]=null;
-            if($config[$i]==1)
-            $tab[$i]=$this->monthC();
-            if($config[$i]==2)
-            $tab[$i]=$this->incrementVal();
-            if($config[$i]==3)
-            $tab[$i]=$this->dateReference();
-            if($config[$i]==4)
-            $tab[$i]=$this->orderCountry($order);
+        $config = Configuration::get("ORDER_REF");
+        $config=str_replace("/YY/",date("Y"),$config);
+        $config=str_replace("/MM/",date("m"),$config);
+        $config=str_replace("/NEXTOM/",self::monthC(),$config);
+        $config=str_replace("/NEXTO/",self::increment(),$config);
+        Configuration::updateValue("ORDER_REF",$config);
+        $order->reference = Configuration::get("ORDER_REF");
+    }
+
+    // zwieksza sie liczba 
+    public static function increment(){
+        if(Configuration::get("CURRENT_ORDER")===null){
+            Configuration::updateValue("CURRENT_ORDER",1);
         }
-        $order->reference = implode("",$tab);
-    }
-
-    // tworzy config do hooka
-    public function createConfig(){
-        for($i=0;$i<=$this->parts;$i++){
-            $tab[$i]=Configuration::get("ORDER_REF_METHOD$i");
-        }
-        return $tab;
-    }
-
-    // rosnaca liczba od podanej wartosci
-    public function incrementVal(){
-        
-    }
-
-    // ISO code kraju zamowienaia
-    public function orderCountry($order){
-
-    }
-
-    // from 3, return : string 
-    public static function dateReference(){
-        return date("Y-m");
+        Configuration::updateValue("CURRENT_ORDER",Configuration::get("CURRENT_ORDER")+1);
+        return Configuration::get("CURRENT_ORDER");
     }
 
     // aktualny mies
@@ -154,26 +102,28 @@ class CustomOrderRef extends Module{
         }
     }
 
-    // jesli sei dubluja? 
-    public function getNewUniqReference()
-    {
-        $query = new DbQuery();
-        $query->select('MIN(id_order) as min, MAX(id_order) as max');
-        $query->from('orders');
-        $query->where('id_cart = ' . (int) $this->id_cart);
-        $order = Db::getInstance()->getRow($query);
-        if ($order['min'] == $order['max']) {
-            return $this->reference;
-        } else {
-            return $this->reference . '#' . ($this->id + 1 - $order['min']);
-        }
-    }
+
+    //CHYAB SIE NIE MG ZDUBLOWAC
+    // // jesli sei dubluja? 
+    // public function getNewUniqReference()
+    // {
+    //     $query = new DbQuery();
+    //     $query->select('MIN(id_order) as min, MAX(id_order) as max');
+    //     $query->from('orders');
+    //     $query->where('id_cart = ' . (int) $this->id_cart);
+    //     $order = Db::getInstance()->getRow($query);
+    //     if ($order['min'] == $order['max']) {
+    //         return $this->reference;
+    //     } else {
+    //         return $this->reference . '#' . ($this->id + 1 - $order['min']);
+    //     }
+    // }
     
 
-    // do tego wyzej 
-    public static function getNewUniqReferenceOf($id_order)
-    {
-        $order = new Order($id_order);
-        return $order->getUniqReference();
-    }
+    // // do tego wyzej 
+    // public static function getNewUniqReferenceOf($id_order)
+    // {
+    //     $order = new Order($id_order);
+    //     return $order->getUniqReference();
+    // }
 }
