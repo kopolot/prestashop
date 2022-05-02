@@ -1,0 +1,61 @@
+.icon-AdminBruttoplStatus,
+#subtab-AdminBruttoplStatus i,
+#subtab-AdminBruttoplDebug i,
+#subtab-AdminBruttoplRegister i{
+    content:"";
+    display:inline-block;
+    width:20px;
+    height:20px;
+    background: transparent url('../img/logo-menu.png') no-repeat 50% 50%;
+    text-indent:-1000px;
+}
+[data-newlabel]:after{
+    content: attr(data-newlabel);
+    z-index: 2;
+    font-size: 8px !important;
+    padding: 0 5px !important;
+    background-color: #00aff0;
+    letter-spacing: 0.0625em;
+    color:#fff;
+    border-radius:10px;
+    margin-left:5px;
+    text-transform:uppercase;
+}
+
+form.AdminBruttoplRegister .help-block a{
+    text-decoration:underline;
+}
+
+form.AdminBruttoplRegister .help-block a:hover{
+    text-decoration:none;
+}
+
+a[data-expand-label]{
+    text-decoration:none !important;
+}
+
+.brutto-form-footer{
+    font-size:10px;
+}
+
+.bruttopl-status-panel h4{
+    font-size:16px;
+}
+
+#content.bootstrap #bruttopl-widget-zone-one .panel-heading{
+    font-size:16px;
+}
+
+#content.bootstrap #bruttopl-widget-zone-one .panel-heading i{
+    font-size:16px;
+}
+
+#content.bootstrap #bruttopl-widget-zone-one h4{
+    font-size:14px;
+}
+
+#content.bootstrap #bruttopl-widget-zone-one h5{
+    font-size:12px;
+}
+
+
