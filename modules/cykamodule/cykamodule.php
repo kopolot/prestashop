@@ -73,17 +73,71 @@ class CykaModule extends Module implements WidgetInterface{
    
     // zakomentowane po to zeby zrobic HelperForm
 
-    // public function getContent(){
-    //     if(Tools::getValue('nie')!=null)
-    //         Configuration::updateValue("ALLAH_AKBAR",Tools::getValue('nie'));
-    //     $this->context->smarty->assign([
-    //         'tak' => Configuration::get('ALLAH_AKBAR'),
-    //         'checkable' => Tools::getValue('nie')
-    //     ]);
-    //     return $this->fetch('module:cykamodule/views/templates/admin/config.tpl');
-    // }
+    public function getContent(){
+        if(Tools::getValue('nie')!=null)
+            Configuration::updateValue("ALLAH_AKBAR",Tools::getValue('nie'));
+        $this->context->smarty->assign([
+            'tak' => Configuration::get('ALLAH_AKBAR'),
+            'checkable' => Tools::getValue('nie')
+        ]);
+        return $this->fetch('module:cykamodule/views/templates/admin/config.tpl');
+    }
 
     public function getContent(){
         return $this->displayForm();
     }
+
+    // public function displayForm(){
+    //     $defaultLang = (int) Configuration::get('PS_LANG_DEFAULT');
+        
+    //     //inputy 
+    //     $form = [
+    //         //  duperele
+    //         'legend' => [
+    //             'title' => $this->trans('Rating setting')
+    //         ],
+    //         //  tu sie wrzuca inputy 
+    //         'input' => [
+    //             [
+    //                 'type' => 'text',
+    //                 'label' => $this->l('do configa'),
+    //                 'name' => 'nie',
+    //                 'required' => true
+    //             ],
+    //             [
+    //                 'type' => 'password',
+    //                 'label' => $this->l('tetstowo'),
+    //                 'name' => 'chuj',
+    //                 'required' => true
+    //             ]
+    //         ],
+    //         'submit' => [
+    //             'title' => $this->trans('submit'),
+    //             'class' => 'btn btn-primary pull-right'
+    //         ]
+    //     ];
+    //     $helper = new HelperForm();
+    //     // Module, token and currentIndex
+    //     $helper->module = $this;
+    //     $helper->name_controller = $this->name;
+    //     $helper->token = Tools::getAdminTokenLite('AdminModules');
+    //     $helper->currentIndex = AdminController::$currentIndex . '&configure=' . $this->name;
+    //     $helper->submit_action = 'submit' . $this->name;
+
+    //     // Default language
+    //     $helper->default_form_language = $defaultLang;
+    //     $helper->allow_employee_form_lang = $defaultLang;
+
+    //     // Load current value into the form
+    //     $helper->fields_value['MYMODULE_CONFIG'] = Tools::getValue('MYMODULE_CONFIG', Configuration::get('MYMODULE_CONFIG'));
+
+    //     //title and toolbar
+    //     $helper->title = $this->displayName;
+    //     $helper->show_toolbar = true;
+    //     $helper->toolbar_scroll = true;
+    //     $helper->submit_action = 'submit' . $this->name;
+
+    //     return $helper->generateForm([$form]);
+
+    //  }
 }
