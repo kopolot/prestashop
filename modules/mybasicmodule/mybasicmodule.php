@@ -28,7 +28,10 @@ class MyBasicModule extends Module implements WidgetInterface {
 
     // install | return :bool
     public function install(){
-        return parent::install() && $this->registerHook('registerGDPRConsent') && $this->dbInstall();
+        return parent::install() 
+        && $this->registerHook('registerGDPRConsent') 
+        && $this->dbInstall()
+        && $this->registerHook('actionFrontControllerSetMedia');
     }
 
     // uninstall | return :bool
@@ -89,5 +92,26 @@ class MyBasicModule extends Module implements WidgetInterface {
             'message' => $message
         ]);
         return $this->fetch('module:mybasicmodule/views/templates/admin/config.tpl');
+    }
+
+    public function hookActionFrontControllerSetMedia()
+    {
+        $this->context->controller->registerStylesheet(
+            'tutorial-style',
+            $this->_path.'views/css/mybasicmodule.css',
+            [
+                'media' => 'all',
+                'priority' => 1000,
+            ]
+        );
+
+        $this->context->controller->registerJavascript(
+            'tutorial-javascript',
+            $this->_path.'views/js/tutorial.js',
+            [
+                'position' => 'bottom',
+                'priority' => 1000,
+            ]
+        );
     }
 }

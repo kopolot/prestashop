@@ -39,6 +39,7 @@ class Tutorial extends Module{
         return (
             parent::install() 
             && $this->registerHook('registerGDPRConsent')
+            && $this->registerHook('actionFrontControllerSetMedia')
             && Configuration::updateValue('TUTORIAL', 'my friend')
         ); 
     }
@@ -113,8 +114,50 @@ class Tutorial extends Module{
 
         // Load current value into the form
         $helper->fields_value['TUTORIAL_CONFIG'] = Tools::getValue('TUTORIAL_CONFIG', Configuration::get('TUTORIAL_CONFIG'));
-        Configuration::deleteByName("MYMODULE_CONFIG");
+        Configuration::deleteByName("TUTORIAL_CONFIG");
+        
         return $helper->generateForm([$form]);
+    }
+
+    public function hookDisplayLeftColumn($params)
+    {
+        $this->context->smarty->assign([
+            'tutorial_name' => Configuration::get('TUTORIAL'),
+            'tutorial_link' => $this->context->link->getModuleLink('tutorial', 'display')
+        ]);
+
+        return $this->display(__FILE__, 'views/templates/hook/tutorial.tpl');
+    }
+
+    public function hookDisplayRightColumn($params)
+    {
+        return $this->hookDisplayLeftColumn($params);
+    }
+
+    public function hookDisplayTop($params)
+    {
+        return $this->hookDisplayLeftColumn($params);
+    }
+
+    public function hookActionFrontControllerSetMedia()
+    {
+        $this->context->controller->registerStylesheet(
+            'tutorial-style',
+            $this->_path.'views/css/tutorial.css',
+            [
+                'media' => 'all',
+                'priority' => 1000,
+            ]
+        );
+
+        $this->context->controller->registerJavascript(
+            'tutorial-javascript',
+            $this->_path.'views/js/tutorial.js',
+            [
+                'position' => 'bottom',
+                'priority' => 1000,
+            ]
+        );
     }
 
 }

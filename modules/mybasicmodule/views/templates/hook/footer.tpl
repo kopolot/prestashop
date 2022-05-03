@@ -1,4 +1,4 @@
-<h1>
+<h1 id="dupa_cycki">
     {$jebac_depresje}
     <hr>
     id cart :{$idcart} 

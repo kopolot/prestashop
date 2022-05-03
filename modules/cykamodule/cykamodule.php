@@ -23,9 +23,9 @@ class CykaModule extends Module implements WidgetInterface{
         $this->displayName = $this->l("HWDP");
         $this->description = $this->l("PDW");
         $this->comfirmUninstall = $this->l('cyka nuggets');
-        if (!Configuration::get('CUSTOM_ORDER_REF')) {
-            $this->warning = $this->l('No name provided');
-        }
+        // if (!Configuration::get('CYKA_MODULE')) {
+        //     $this->warning = $this->l('No name provided');
+        // }
     }
     //update table
     public function install()
@@ -70,8 +70,12 @@ class CykaModule extends Module implements WidgetInterface{
             'idcart' => $this->context->cart->id
         ];
     }
-   
-    // zakomentowane po to zeby zrobic HelperForm
+
+    /**
+        ha zjadł na tym filmiku bracie
+     */
+
+    // zakomentowane po to zeby zrobic HelperForm | ten z filmiku nie dziala 
 
     public function getContent(){
         if(Tools::getValue('nie')!=null)
@@ -83,5 +87,65 @@ class CykaModule extends Module implements WidgetInterface{
         return $this->fetch('module:cykamodule/views/templates/admin/config.tpl');
     }
 
-    
+    // mam nadzieje ze teraz zadziala | no i chuj nie dziala
+
+    // public function getContent(){
+    //     return $this->displayForm();
+    // }
+
+    // public function displayForm(){
+
+    //     $defaultLang = Configuration::get('PS_LANG_DEFAULT');
+
+    //     //inputy
+    //     $form = [
+    //         'legend' => [
+    //             'title' => $this->trans('Ustawinia modułu')
+    //         ],
+    //         'input' => [
+    //             [
+    //                 'type' => 'text',
+    //                 'label' => 'wpisz cos',
+    //                 'name' => 'CYKA_MODULE',
+    //                 'size' => 20,
+    //                 'required' => true
+    //             ]
+    //         ],
+    //         'submit' => [
+    //             'title' => $this->trans('zapisz hwdp do policji'),
+    //             'class' => 'btn btn-priamry pull-right'
+    //         ],
+    //     ];
+
+    //     // HelperForm
+    //     $helper = new HelperForm();
+    //     $helper->table = $this->table;
+    //     $helper->module = $this;
+    //     $helper->name_controller = $this->name;
+    //     $helper->token = Tools::getAdminTokenLite('AdminModules');
+    //     $helper->currentIndex = AdminController::$currentIndex . '&' . http_build_query(['configure' => $this->name]);
+    //     $helper->submit_action = 'submit' . $this->name;
+
+    //     // Language
+    //     $helper->default_form_language = $defaultLang;
+    //     $helper->allow_employee_form_lang = $defaultLang;
+
+    //     // Title and toolbar
+    //     // $helper->title = $this->displayName;
+    //     // $helper->show_toolbar = true;
+    //     // $helper->toolbar_scroll = true;
+    //     // $helper->submit_action = "submit" . $this->name;
+    //     // $helper->toolbar_btn = [
+    //     //     'save' => [
+    //     //         'desc' => $this->l('save'),
+    //     //         'href' => AdminController::$currentIndex . '&token=' . $this->name . '&save' . $this->name . '&token=' . Tools::getAdminTokenLite('AdminModules')
+    //     //     ],
+    //     //     'back' => [
+    //     //         'href' => AdminController::$currentIndex . '&token=' . Tools::getAdminTokenLite('AdminModules'),
+    //     //         'desc' => $this->l('Back to list') 
+    //     //     ]
+    //     // ];
+       
+    //     return $helper->generateForm([$form]);
+   // }
 }
