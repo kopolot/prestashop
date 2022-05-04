@@ -69,9 +69,13 @@ class CustomMargin extends Module{
     }
 
     public function hookDisplayAdminProductsPriceStepBottom(){
-        // $this->context->smarty->assign([
-        //     'value' =>  Configuration::get('MARGIN')
-        // ]);
+        $currency_id = Configuration::get('PS_CURRENCY_DEFAULT');
+        $result = Db::getInstance()->getRow('SELECT `iso_code` FROM ' . _DB_PREFIX_ . 'currency WHERE `id_currency` = ' . $currency_id . ' AND `deleted` = 0');
+        $this->context->smarty->assign([
+            'value' =>  Configuration::get('MARGIN'),
+            'currency' => $result['iso_code']
+            
+        ]);
         return $this->fetch('module:custommargin/views/templates/hook/product_price.tpl');
     }
 }
