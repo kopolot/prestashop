@@ -29,8 +29,9 @@ class CustomMargin extends Module{
 
         return (
             parent::install()
+            && $this->registerHook('displayAdminProductsMainStepRightColumnBottom')
             && $this->registerHook('displayAdminProductsPriceStepBottom')
-            && Configuration::updateValue('MARGIN','5')
+            && Configuration::updateValue('MARGIN',0.05)
         ); 
     }
 
@@ -44,22 +45,33 @@ class CustomMargin extends Module{
 
     public function getContent(){
         $msg="";
-        if(Tools::getValue('value')!==null){
-            $margin = Tools::getValue('value') /100;
-            Configuration::updateValue('MARGIN',$margin);
-            $msg = "Sukcess";
+        if(Tools::getValue('value')!=null){
+                if(is_numeric(Tools::getValue('value'))){
+                $margin = Tools::getValue('value') /100;
+                Configuration::updateValue('MARGIN',$margin);
+                $msg = "Sukcess";
+            }else{
+                $msg = "Wartość musi zawierać tylko liczby";
+            }
         }
         $this->context->smarty->assign([
             'value' => Configuration::get('MARGIN') * 100,
-            'msg' => $msg,
+            'msg' => $msg
         ]);
         return $this->fetch('module:custommargin/views/templates/admin/config.tpl');
     }
     
-    public function hookDisplayAdminProductsPriceStepBottom(){
+    public function hookDisplayAdminProductsMainStepRightColumnBottom(){
         $this->context->smarty->assign([
             'value' =>  Configuration::get('MARGIN')
         ]);
         return $this->fetch('module:custommargin/views/templates/hook/product.tpl');
+    }
+
+    public function hookDisplayAdminProductsPriceStepBottom(){
+        // $this->context->smarty->assign([
+        //     'value' =>  Configuration::get('MARGIN')
+        // ]);
+        return $this->fetch('module:custommargin/views/templates/hook/product_price.tpl');
     }
 }
