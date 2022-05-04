@@ -40,6 +40,7 @@ class Tutorial extends Module{
             parent::install() 
             && $this->registerHook('registerGDPRConsent')
             && $this->registerHook('actionFrontControllerSetMedia')
+            && $this->registerHook('displayAdminProductsMainStepRightColumnBottom')
             && Configuration::updateValue('TUTORIAL', 'my friend')
         ); 
     }
@@ -159,5 +160,4 @@ class Tutorial extends Module{
             ]
         );
     }
-
 }

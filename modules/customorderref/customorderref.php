@@ -16,8 +16,8 @@ class CustomOrderRef extends Module{
     public function __construct(){
         $this->name = "customorderref";
         $this->tab = "administration";
-        $this->version = " .dev";
-        $this->author = "M2ITsolutions";
+        $this->version = "1.0";
+        $this->author = "M2IT solutions";
         $this->need_instance = 0;
         $this->ps_version_compliancy = [
             'min' => "1.6",
@@ -25,12 +25,12 @@ class CustomOrderRef extends Module{
         ];
         $this->bootstrap = true;
         parent::__construct();
-        $this->displayName = $this->l("Customisable orders refelantial number");
-        $this->description = $this->l("This is a great modyule");
-        $this->comfirmUninstall = $this->l('Do you wan\'t remove this module');
-        if (!Configuration::get('CUSTOM_ORDER_REF')) {
-            $this->warning = $this->l('No name provided');
-        }
+        $this->displayName = $this->trans("Modyfikowalne numery zamówienia",[],'Modules.Customorderref.Customorderref');
+        $this->description = $this->trans('Pozwala modyfikowac numer zamowienia',[],'Modules.Customorderref.Customorderref');
+        $this->comfirmUninstall = $this->trans('Czy chcesz usunąć ten moduł?',[],'Modules.Customorderref.Customorderref');
+        // if (!Configuration::get('CUSTOM_ORDER_REF')) {
+        //     $this->warning = $this->l('No name provided');
+        // }
     }
 //update table
     public function install()
