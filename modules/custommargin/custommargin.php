@@ -31,6 +31,7 @@ class CustomMargin extends Module{
             parent::install()
             && $this->registerHook('displayAdminProductsMainStepRightColumnBottom')
             && $this->registerHook('displayAdminProductsPriceStepBottom')
+            && $this->registerHook('actionProductAdd')
             && Configuration::updateValue('MARGIN',0.05)
         ); 
     }
@@ -70,12 +71,12 @@ class CustomMargin extends Module{
 
     public function hookDisplayAdminProductsPriceStepBottom(){
         $currency_id = Configuration::get('PS_CURRENCY_DEFAULT');
-        $result = Db::getInstance()->getRow('SELECT `iso_code` FROM ' . _DB_PREFIX_ . 'currency WHERE `id_currency` = ' . $currency_id . ' AND `deleted` = 0');
+        $result = Db::getInstance()->getRow('SELECT `symbol` FROM ' . _DB_PREFIX_ . 'currency_lang WHERE `id_currency` = ' . $currency_id);
         $this->context->smarty->assign([
             'value' =>  Configuration::get('MARGIN'),
-            'currency' => $result['iso_code']
-            
+            'currency' => $result['symbol']
         ]);
         return $this->fetch('module:custommargin/views/templates/hook/product_price.tpl');
     }
+    
 }
