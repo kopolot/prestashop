@@ -5,7 +5,7 @@ class CustomMargin extends Module{
     public function __construct(){
         $this->name = 'custommargin';
         $this->tab = 'administration';
-        $this->version = ' .dev';
+        $this->version = '1.0';
         $this->author = 'M2IT solutions';
         $this->need_instance = 0;
         $this->ps_versions_compliancy = [
@@ -15,7 +15,7 @@ class CustomMargin extends Module{
         $this->bootstrap = true;
         parent::__construct();
         $this->displayName = $this->trans('Modyfikowalna marża',[],'Modules.Custommargin.Custommargin');
-        $this->description = $this->trans('Pozwala dowolnie modyfikowac marze i obliczać cene produktu po z marżą',[],'Modules.Custommargin.Custommargin');
+        $this->description = $this->trans('Pozwala dowolnie modyfikowac marze i obliczać cene produktu z marżą, zapisuje marżę produktu i cenę bez niej w bazie dancyh',[],'Modules.Custommargin.Custommargin');
 
         $this->confirmUninstall = $this->trans('Napewno chcesz usunąć?',[],'Modules.Custommargin.Custommargin');
     }
@@ -31,9 +31,14 @@ class CustomMargin extends Module{
             parent::install()
             && $this->registerHook('displayAdminProductsMainStepRightColumnBottom')
             && $this->registerHook('displayAdminProductsPriceStepBottom')
-            && $this->registerHook('actionProductAdd')
+            && $this->registerHook('actionProductSave')
             && Configuration::updateValue('MARGIN',0.05)
+            && $this->installDb()
         ); 
+    }
+
+    public function installDb(){
+        return Db::getInstance()->execute('alter table '. _DB_PREFIX_ .'product ADD COLUMN your_buying_price decimal(20,6) not null') && Db::getInstance()->execute('alter table '. _DB_PREFIX_ .'product ADD COLUMN margin float');
     }
 
     public function uninstall()
@@ -41,7 +46,13 @@ class CustomMargin extends Module{
         return (
             parent::uninstall()
             && Configuration::deleteByName('MARGIN')
+            && $this->uninstallDb()
         );
+    }
+
+    public function uninstallDb(){
+        return Db::getInstance()->execute('alter table '. _DB_PREFIX_ .'product drop COLUMN your_buying_price')
+        && Db::getInstance()->execute('alter table '. _DB_PREFIX_ .'product drop COLUMN margin');
     }
 
     public function getContent(){
@@ -61,15 +72,9 @@ class CustomMargin extends Module{
         ]);
         return $this->fetch('module:custommargin/views/templates/admin/config.tpl');
     }
-    
-    public function hookDisplayAdminProductsMainStepRightColumnBottom(){
-        $this->context->smarty->assign([
-            'value' =>  Configuration::get('MARGIN')
-        ]);
-        return $this->fetch('module:custommargin/views/templates/hook/product.tpl');
-    }
 
     public function hookDisplayAdminProductsPriceStepBottom(){
+
         $currency_id = Configuration::get('PS_CURRENCY_DEFAULT');
         $result = Db::getInstance()->getRow('SELECT `symbol` FROM ' . _DB_PREFIX_ . 'currency_lang WHERE `id_currency` = ' . $currency_id);
         $this->context->smarty->assign([
@@ -78,5 +83,8 @@ class CustomMargin extends Module{
         ]);
         return $this->fetch('module:custommargin/views/templates/hook/product_price.tpl');
     }
-    
+
+    public function hookActionProductSave($params){
+        Db::getInstance()->execute('update '. _DB_PREFIX_ .'product set your_buying_price = '. $params['product']->wholesale_price .', margin = '. Configuration::get('MARGIN') .' where id_product = '. $params['id_product']);
+    }
 }

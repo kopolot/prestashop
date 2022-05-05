@@ -3,7 +3,7 @@
     <name>custommargin</name>
     <displayName><![CDATA[Modyfikowalna marża]]></displayName>
     <version><![CDATA[ .dev]]></version>
-    <description><![CDATA[Pozwala dowolnie modyfikowac marze i obliczać cene produktu po z marżą]]></description>
+    <description><![CDATA[Pozwala dowolnie modyfikowac marze i obliczać cene produktu z marżą, zapisuje marżę produktu i cenę bez niej w bazie dancyh]]></description>
     <author><![CDATA[M2IT solutions]]></author>
     <tab><![CDATA[administration]]></tab>
 	<confirmUninstall><![CDATA[Napewno chcesz usunąć?]]></confirmUninstall>
